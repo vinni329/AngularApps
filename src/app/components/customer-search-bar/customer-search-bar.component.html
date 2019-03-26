@@ -1,0 +1,42 @@
+<mat-card>
+  <mat-card-subtitle>Please Select Search Options</mat-card-subtitle>
+  <mat-card-content>
+    <div class="row">
+
+      <div class="col-lg-4 col-md-12 col-sm-12">
+        <mat-form-field style="width: 100%">
+          <mat-label>Search Options</mat-label>
+          <mat-select [(value)]="selectedOption">
+            <mat-option *ngFor="let option of searchOptions" [value]='option'>
+              {{option.label}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+
+      <div class="col-lg-5 col-md-12 col-sm-12">
+
+        <form class="full-width">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="{{ 'Please Enter ' + selectedOption.label }}" type="selectedOption.type">
+          </mat-form-field>
+        </form>
+      </div>
+
+      <div class="col-lg-1 col-md-12 col-sm-12">
+        <div >
+          <button mat-raised-button color="primary">Search</button>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-md-12 col-sm-12">
+        <button mat-raised-button color="primary">Recently Viewed Customers</button>
+      </div>
+    </div>
+
+  </mat-card-content>
+</mat-card>
+
+<div>selected: {{selectedOption.label}} {{selectedOption.type}}</div>
