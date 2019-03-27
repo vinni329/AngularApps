@@ -1,12 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatCardModule, MatButtonModule, MatSelectModule, MatInputModule } from '@angular/material';
+import { MatCardModule, MatButtonModule, MatSelectModule, MatInputModule, MatAutocompleteModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { CustomerSearchComponent } from './components/customer-search/customer-search.component';
 import { RouteRoutingModule } from './route/route-routing.module';
 import { CustomerSearchBarComponent } from './components/customer-search-bar/customer-search-bar.component';
+import { RecentCustomersService } from './services/recent-customers.service';
+import { GetHeaders } from './utilities/header-utilities';
+import { HttpClientModule } from '@angular/common/http';
+import { CustomerSearchService } from './services/customer-search.service';
 
 @NgModule({
   declarations: [
@@ -16,14 +20,20 @@ import { CustomerSearchBarComponent } from './components/customer-search-bar/cus
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     RouteRoutingModule,
+    MatInputModule,
+    MatAutocompleteModule,
     MatCardModule,
     MatButtonModule,
     MatSelectModule,
-    MatInputModule
   ],
-  providers: [],
+  providers: [
+    RecentCustomersService,
+    CustomerSearchService,
+    GetHeaders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

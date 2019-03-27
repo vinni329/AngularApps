@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RecentCustomersService } from 'src/app/services/recent-customers.service';
 
 @Component({
     selector: 'customer-search-bar',
@@ -25,9 +26,16 @@ export class CustomerSearchBarComponent implements OnInit {
         }
     ];
 
+    addresses = ['332 night sail dr', '1520 brushfoot trail'];
     selectedOption = this.searchOptions[0];
 
-    constructor() { }
+    constructor(private recentCustomerService: RecentCustomersService) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.recentCustomerService.getAppId();
+    }
+
+    onSelectAddress(address: string) {
+        console.log('address selected: ', address);
+    }
 }
