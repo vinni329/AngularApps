@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecentCustomersService } from 'src/app/services/recent-customers.service';
+import { FormControl } from '@angular/forms';
+import { CustomerSearchService } from 'src/app/services/customer-search.service';
 
 @Component({
     selector: 'customer-search-bar',
@@ -25,17 +27,23 @@ export class CustomerSearchBarComponent implements OnInit {
             type: 'text'
         }
     ];
+    inputValue = new FormControl('');
 
     addresses = ['332 night sail dr', '1520 brushfoot trail'];
-    selectedOption = this.searchOptions[0];
+    selectedSearchOption = this.searchOptions[0];
 
-    constructor(private recentCustomerService: RecentCustomersService) { }
+    constructor(
+        private recentCustomerService: RecentCustomersService,
+        private customerSearchService: CustomerSearchService
+        ) { }
 
     ngOnInit() {
         this.recentCustomerService.getAppId();
     }
 
-    onSelectAddress(address: string) {
-        console.log('address selected: ', address);
+    onSearchAddressChange(entertedAddress) {
+        this.customerSearchService.getAddressSuggestions(entertedAddress);
+        console.log('testing', entertedAddress);
     }
+
 }
